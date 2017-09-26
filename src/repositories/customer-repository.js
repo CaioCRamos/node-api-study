@@ -8,6 +8,13 @@ exports.get = async() => {
 }
 
 exports.create = async(data) => {
-    var customer = new Customer(data);
+    let customer = new Customer(data);
     await customer.save();
+}
+
+exports.authenticate = async(data) => {
+    return await Customer.findOne({
+        email: data.email,
+        password: data.password
+    })
 }
